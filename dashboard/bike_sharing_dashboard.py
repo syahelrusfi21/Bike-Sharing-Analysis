@@ -52,7 +52,7 @@ elif menu == "📊 Dashboard":
     # Load gambar
     #image_path = os.path.join("trend_bike_rentals.png")
     #image = Image.open(image_path)
-    image = Image.open("https://github.com/syahelrusfi21/Bike-Sharing-Analysis/blob/main/dashboard/trend_bike_rentals.png")
+    image = Image.open("https://github.com/syahelrusfi21/Bike-Sharing-Analysis/raw/main/dashboard/trend_bike_rentals.png")
 
     # Tampilkan di Streamlit
     st.image(image, caption="Tren Penyewaan Sepeda Sepanjang Waktu", use_container_width=True)
@@ -63,7 +63,7 @@ elif menu == "📊 Dashboard":
     # Load gambar
     #image_path = os.path.join("user_trend.png")
     #image = Image.open(image_path)
-    image = Image.open("https://github.com/syahelrusfi21/Bike-Sharing-Analysis/blob/main/dashboard/user_trend.png")
+    image = Image.open("https://github.com/syahelrusfi21/Bike-Sharing-Analysis/raw/main/dashboard/user_trend.png")
 
     # Tampilkan di Streamlit
     st.image(image, caption="Tren Pengguna Terdaftar vs Biasa", use_container_width=True)
@@ -74,7 +74,7 @@ elif menu == "📊 Dashboard":
     # Load gambar
     #image_path = os.path.join("visualization_img", "environmental_condition.png")
     #image = Image.open(image_path)
-    image = Image.open("https://github.com/syahelrusfi21/Bike-Sharing-Analysis/blob/main/dashboard/environmental_condition.png")
+    image = Image.open("https://github.com/syahelrusfi21/Bike-Sharing-Analysis/raw/main/dashboard/environmental_condition.png")
 
     # Tampilkan di Streamlit
     st.image(image, caption="Korelasi beberapa faktor lingkungan terhadap total_rentals", use_container_width=True)
@@ -85,7 +85,7 @@ elif menu == "📊 Dashboard":
     # Load gambar
     #image_path = os.path.join("visualization_img", "weekday_vs_weekend.png")
     #image = Image.open(image_path)
-    image = Image.open("https://github.com/syahelrusfi21/Bike-Sharing-Analysis/blob/main/dashboard/weekday_vs_weekend.png")
+    image = Image.open("https://github.com/syahelrusfi21/Bike-Sharing-Analysis/raw/main/dashboard/weekday_vs_weekend.png")
 
     # Tampilkan di Streamlit
     st.image(image, caption="Perbandingan total penyewa sepeda pada weekday dan weekend", use_container_width=True)
