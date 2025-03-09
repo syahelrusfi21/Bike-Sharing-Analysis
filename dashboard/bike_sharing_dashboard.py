@@ -7,7 +7,7 @@ from PIL import Image
 import os
 
 # Load Dataset
-@st.cache_data
+#@st.cache_data
 def load_data():
     df = pd.read_csv("https://github.com/syahelrusfi21/Bike-Sharing-Analysis/raw/main/dashboard/bike_(preprocessed)_data.csv)
     df["date"] = pd.to_datetime(df["date"])
