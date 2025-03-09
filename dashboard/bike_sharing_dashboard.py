@@ -61,9 +61,9 @@ elif menu == "📊 Dashboard":
     st.subheader("👥 Perbandingan Pengguna Terdaftar vs Biasa")
 
     # Load gambar
-    #image_path = os.path.join("visualization_img", "user_trend.png")
+    image_path = os.path.join("user_trend.png")
     #image = Image.open(image_path)
-    image = Image.open("user_trend.png")
+    #image = Image.open("user_trend.png")
 
     # Tampilkan di Streamlit
     st.image(image, caption="Tren Pengguna Terdaftar vs Biasa", use_container_width=True)
