@@ -63,10 +63,10 @@ elif menu == "📊 Dashboard":
     # Load gambar
     #image_path = os.path.join("user_trend.png")
     #image = Image.open(image_path)
-    image = Image.open("https://github.com/syahelrusfi21/Bike-Sharing-Analysis/raw/main/dashboard/user_trend.png")
+    st.image("https://github.com/syahelrusfi21/Bike-Sharing-Analysis/raw/main/dashboard/user_trend.png")
 
     # Tampilkan di Streamlit
-    st.image(image, caption="Tren Pengguna Terdaftar vs Biasa", use_container_width=True)
+    #st.image(image, caption="Tren Pengguna Terdaftar vs Biasa", use_container_width=True)
 
     # 🌤️ **Pengaruh Lingkungan terhadap Penyewaan**
     st.subheader("🌤️ Pengaruh Faktor Lingkungan terhadap Jumlah Penyewa")
@@ -74,10 +74,10 @@ elif menu == "📊 Dashboard":
     # Load gambar
     #image_path = os.path.join("visualization_img", "environmental_condition.png")
     #image = Image.open(image_path)
-    image = Image.open("https://github.com/syahelrusfi21/Bike-Sharing-Analysis/raw/main/dashboard/environmental_condition.png")
+    st.image("https://github.com/syahelrusfi21/Bike-Sharing-Analysis/raw/main/dashboard/environmental_condition.png")
 
     # Tampilkan di Streamlit
-    st.image(image, caption="Korelasi beberapa faktor lingkungan terhadap total_rentals", use_container_width=True)
+    #st.image(image, caption="Korelasi beberapa faktor lingkungan terhadap total_rentals", use_container_width=True)
     
     # 📅 **Weekday vs Weekend**
     st.subheader("📅 Weekday vs Weekend")
@@ -85,10 +85,10 @@ elif menu == "📊 Dashboard":
     # Load gambar
     #image_path = os.path.join("visualization_img", "weekday_vs_weekend.png")
     #image = Image.open(image_path)
-    image = Image.open("https://github.com/syahelrusfi21/Bike-Sharing-Analysis/raw/main/dashboard/weekday_vs_weekend.png")
+    st.image("https://github.com/syahelrusfi21/Bike-Sharing-Analysis/raw/main/dashboard/weekday_vs_weekend.png")
 
     # Tampilkan di Streamlit
-    st.image(image, caption="Perbandingan total penyewa sepeda pada weekday dan weekend", use_container_width=True)
+    #st.image(image, caption="Perbandingan total penyewa sepeda pada weekday dan weekend", use_container_width=True)
     
 # **3️⃣ INSIGHT PAGE**
 elif menu == "📈 Insight":
