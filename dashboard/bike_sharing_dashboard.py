@@ -3,11 +3,8 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 import plotly.express as px
-from PIL import Image
-import os
 
 # Load Dataset
-#@st.cache_data
 def load_data():
     df = pd.read_csv("https://github.com/syahelrusfi21/Bike-Sharing-Analysis/raw/main/dashboard/bike_(preprocessed)_data.csv")
     df["date"] = pd.to_datetime(df["date"])
@@ -50,46 +47,26 @@ elif menu == "📊 Dashboard":
     st.subheader("📈 Tren Penyewaan Sepeda")
     
     # Load gambar
-    #image_path = os.path.join("trend_bike_rentals.png")
-    #image = Image.open(image_path)
     st.image("https://github.com/syahelrusfi21/Bike-Sharing-Analysis/raw/main/dashboard/trend_bike_rentals.png")
-
-    # Tampilkan di Streamlit
-    #st.image(image, caption="Tren Penyewaan Sepeda Sepanjang Waktu", use_container_width=True)
 
     # 👥 **Perbandingan Pengguna Terdaftar vs Biasa**
     st.subheader("👥 Perbandingan Pengguna Terdaftar vs Biasa")
 
     # Load gambar
-    #image_path = os.path.join("user_trend.png")
-    #image = Image.open(image_path)
     st.image("https://github.com/syahelrusfi21/Bike-Sharing-Analysis/raw/main/dashboard/user_trend.png")
-
-    # Tampilkan di Streamlit
-    #st.image(image, caption="Tren Pengguna Terdaftar vs Biasa", use_container_width=True)
 
     # 🌤️ **Pengaruh Lingkungan terhadap Penyewaan**
     st.subheader("🌤️ Pengaruh Faktor Lingkungan terhadap Jumlah Penyewa")
     
     # Load gambar
-    #image_path = os.path.join("visualization_img", "environmental_condition.png")
-    #image = Image.open(image_path)
     st.image("https://github.com/syahelrusfi21/Bike-Sharing-Analysis/raw/main/dashboard/environmental_condition.png")
-
-    # Tampilkan di Streamlit
-    #st.image(image, caption="Korelasi beberapa faktor lingkungan terhadap total_rentals", use_container_width=True)
     
     # 📅 **Weekday vs Weekend**
     st.subheader("📅 Weekday vs Weekend")
 
     # Load gambar
-    #image_path = os.path.join("visualization_img", "weekday_vs_weekend.png")
-    #image = Image.open(image_path)
     st.image("https://github.com/syahelrusfi21/Bike-Sharing-Analysis/raw/main/dashboard/weekday_vs_weekend.png")
 
-    # Tampilkan di Streamlit
-    #st.image(image, caption="Perbandingan total penyewa sepeda pada weekday dan weekend", use_container_width=True)
-    
 # **3️⃣ INSIGHT PAGE**
 elif menu == "📈 Insight":
     st.title("📈 Insight Penyewaan Sepeda")
