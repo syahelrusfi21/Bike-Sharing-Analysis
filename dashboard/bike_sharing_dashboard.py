@@ -9,7 +9,7 @@ import os
 # Load Dataset
 @st.cache_data
 def load_data():
-    df = pd.read_csv(os.path.join("data", "bike_preprocessed_data.csv"))
+    df = pd.read_csv("https://github.com/syahelrusfi21/Bike-Sharing-Analysis/raw/main/dashboard/bike_(preprocessed)_data.csv)
     df["date"] = pd.to_datetime(df["date"])
     df["year"] = df["date"].dt.year
     df["month"] = df["date"].dt.month
