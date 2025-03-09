@@ -52,10 +52,10 @@ elif menu == "📊 Dashboard":
     # Load gambar
     #image_path = os.path.join("trend_bike_rentals.png")
     #image = Image.open(image_path)
-    image = Image.open("https://github.com/syahelrusfi21/Bike-Sharing-Analysis/raw/main/dashboard/trend_bike_rentals.png")
+    st.image("https://github.com/syahelrusfi21/Bike-Sharing-Analysis/raw/main/dashboard/trend_bike_rentals.png")
 
     # Tampilkan di Streamlit
-    st.image(image, caption="Tren Penyewaan Sepeda Sepanjang Waktu", use_container_width=True)
+    #st.image(image, caption="Tren Penyewaan Sepeda Sepanjang Waktu", use_container_width=True)
 
     # 👥 **Perbandingan Pengguna Terdaftar vs Biasa**
     st.subheader("👥 Perbandingan Pengguna Terdaftar vs Biasa")
