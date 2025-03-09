@@ -50,9 +50,9 @@ elif menu == "📊 Dashboard":
     st.subheader("📈 Tren Penyewaan Sepeda")
     
     # Load gambar
-    #image_path = os.path.join("visualization_img", "trend_bike_rentals.png")
+    image_path = os.path.join("trend_bike_rentals.png")
     #image = Image.open(image_path)
-    image = Image.open("trend_bike_rentals.png")
+    #image = Image.open("trend_bike_rentals.png")
 
     # Tampilkan di Streamlit
     st.image(image, caption="Tren Penyewaan Sepeda Sepanjang Waktu", use_container_width=True)
