@@ -8,7 +8,7 @@ from PIL import Image
 # Load Dataset
 @st.cache_data
 def load_data():
-    df = pd.read_csv(r"S:\College\Coding Camp 2025\proyek_analisis_data\bike_(preprocessed)_data.csv")  # Sesuaikan dengan lokasi file
+    df = pd.read_csv("bike_(preprocessed)_data.csv")  # Sesuaikan dengan lokasi file
     df["date"] = pd.to_datetime(df["date"])
     df["year"] = df["date"].dt.year
     df["month"] = df["date"].dt.month
@@ -49,7 +49,7 @@ elif menu == "📊 Dashboard":
     st.subheader("📈 Tren Penyewaan Sepeda")
     
     # Load gambar
-    image = Image.open(r"S:\College\Coding Camp 2025\proyek_analisis_data\trend_bike_rentals.png")
+    image = Image.open("visualization_img\trend_bike_rentals.png")
 
     # Tampilkan di Streamlit
     st.image(image, caption="Tren Penyewaan Sepeda Sepanjang Waktu", use_container_width=True)
@@ -58,7 +58,7 @@ elif menu == "📊 Dashboard":
     st.subheader("👥 Perbandingan Pengguna Terdaftar vs Biasa")
 
     # Load gambar
-    image = Image.open(r"S:\College\Coding Camp 2025\proyek_analisis_data\user_trend.png")
+    image = Image.open("visualization_img\user_trend.png")
 
     # Tampilkan di Streamlit
     st.image(image, caption="Tren Pengguna Terdaftar vs Biasa", use_container_width=True)
@@ -67,7 +67,7 @@ elif menu == "📊 Dashboard":
     st.subheader("🌤️ Pengaruh Faktor Lingkungan terhadap Jumlah Penyewa")
     
     # Load gambar
-    image = Image.open(r"S:\College\Coding Camp 2025\proyek_analisis_data\environmental_condition.png")
+    image = Image.open("visualization_img\environmental_condition.png")
 
     # Tampilkan di Streamlit
     st.image(image, caption="Korelasi beberapa faktor lingkungan terhadap total_rentals", use_container_width=True)
@@ -76,7 +76,7 @@ elif menu == "📊 Dashboard":
     st.subheader("📅 Weekday vs Weekend")
 
     # Load gambar
-    image = Image.open(r"S:\College\Coding Camp 2025\proyek_analisis_data\weekday_vs_weekend.png")
+    image = Image.open("visualization_img\weekday_vs_weekend.png")
 
     # Tampilkan di Streamlit
     st.image(image, caption="Perbandingan total penyewa sepeda pada weekday dan weekend", use_container_width=True)
