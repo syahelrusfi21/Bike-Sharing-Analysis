@@ -38,11 +38,11 @@ streamlit run bike_sharing_dashboard.py
 bike-sharing-analysis/
 │── dashboard/
 │   ├── bike_sharing_dashboard.py  # Main Streamlit app
-│   ├── bike_(preprocessed)_data   # Preprocessed dataset
+│   ├── bike_(preprocessed)_data.csv   # Preprocessed dataset
 │   ├── image1.png   # Visualization image
 |   ├──    .
 |   ├──    .
-│── data/
+│── dataset/
 │   ├── day.csv  # Raw dataset
 │   ├── hour.csv  # Raw dataset
 │── requirements.txt
