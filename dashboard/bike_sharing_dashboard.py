@@ -113,7 +113,7 @@ elif menu == "📊 Dashboard":
     fig = px.bar(
         day_type_rentals,
         x="day_type",
-        y=["casual", "registered"],
+        y=["casual_rentals", "registered_rentals"],
         labels={"value": "Total Rentals", "day_type": "Day Type"},
         barmode="group",
         text_auto=True,  # Menampilkan angka di atas bar
