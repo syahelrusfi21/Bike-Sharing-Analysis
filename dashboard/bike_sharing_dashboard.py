@@ -45,27 +45,55 @@ elif menu == "📊 Dashboard":
     
     # 📈 **Visualisasi Tren Penyewaan (Harian & Bulanan)**
     st.subheader("📈 Tren Penyewaan Sepeda")
+
+    # Tambahkan slider untuk memilih rentang tanggal
+    min_date = df["date"].min().date()
+    max_date = df["date"].max().date()
+    start_date, end_date = st.slider("Pilih Rentang Tanggal", min_value=min_date, max_value=max_date, value=(min_date, max_date))
+
+    # Filter data berdasarkan rentang tanggal
+    filtered_df = df[(df["date"].dt.date >= start_date) & (df["date"].dt.date <= end_date)]
+
+    # Pilihan tampilan harian atau bulanan
+    option = st.radio("Lihat tren berdasarkan:", ["Harian", "Bulanan"], horizontal=True)
+
+    if option == "Harian":
+        fig = px.line(filtered_df, x="datetime", y="count", title="Tren Penyewaan Sepeda (Harian)", labels={"count": "Jumlah Penyewaan"})
+    else:
+        df["month"] = df["datetime"].dt.to_period("M")
+        monthly_df = df.groupby("month")["count"].sum().reset_index()
+        fig = px.line(monthly_df, x="month", y="count", title="Tren Penyewaan Sepeda (Bulanan)", labels={"count": "Jumlah Penyewaan"})
+
+    # Tampilkan grafik interaktif
+    st.plotly_chart(fig, use_container_width=True)
+
+# # **2️⃣ DASHBOARD PAGE**
+# elif menu == "📊 Dashboard":
+#     st.title("📊 Dashboard Penyewaan Sepeda")
     
-    # Load gambar
-    st.image("https://github.com/syahelrusfi21/Bike-Sharing-Analysis/raw/main/dashboard/trend_bike_rentals.png")
-
-    # 👥 **Perbandingan Pengguna Terdaftar vs Biasa**
-    st.subheader("👥 Perbandingan Pengguna Terdaftar vs Biasa")
-
-    # Load gambar
-    st.image("https://github.com/syahelrusfi21/Bike-Sharing-Analysis/raw/main/dashboard/user_trend.png")
-
-    # 🌤️ **Pengaruh Lingkungan terhadap Penyewaan**
-    st.subheader("🌤️ Pengaruh Faktor Lingkungan terhadap Jumlah Penyewa")
+#     # 📈 **Visualisasi Tren Penyewaan (Harian & Bulanan)**
+#     st.subheader("📈 Tren Penyewaan Sepeda")
     
-    # Load gambar
-    st.image("https://github.com/syahelrusfi21/Bike-Sharing-Analysis/raw/main/dashboard/environmental_condition.png")
-    
-    # 📅 **Weekday vs Weekend**
-    st.subheader("📅 Weekday vs Weekend")
+#     # Load gambar
+#     st.image("https://github.com/syahelrusfi21/Bike-Sharing-Analysis/raw/main/dashboard/trend_bike_rentals.png")
 
-    # Load gambar
-    st.image("https://github.com/syahelrusfi21/Bike-Sharing-Analysis/raw/main/dashboard/weekday_vs_weekend.png")
+#     # 👥 **Perbandingan Pengguna Terdaftar vs Biasa**
+#     st.subheader("👥 Perbandingan Pengguna Terdaftar vs Biasa")
+
+#     # Load gambar
+#     st.image("https://github.com/syahelrusfi21/Bike-Sharing-Analysis/raw/main/dashboard/user_trend.png")
+
+#     # 🌤️ **Pengaruh Lingkungan terhadap Penyewaan**
+#     st.subheader("🌤️ Pengaruh Faktor Lingkungan terhadap Jumlah Penyewa")
+    
+#     # Load gambar
+#     st.image("https://github.com/syahelrusfi21/Bike-Sharing-Analysis/raw/main/dashboard/environmental_condition.png")
+    
+#     # 📅 **Weekday vs Weekend**
+#     st.subheader("📅 Weekday vs Weekend")
+
+#     # Load gambar
+#     st.image("https://github.com/syahelrusfi21/Bike-Sharing-Analysis/raw/main/dashboard/weekday_vs_weekend.png")
 
 # **3️⃣ INSIGHT PAGE**
 elif menu == "📈 Insight":
