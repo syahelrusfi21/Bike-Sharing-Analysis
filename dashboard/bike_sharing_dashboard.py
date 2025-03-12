@@ -47,6 +47,7 @@ elif menu == "📊 Dashboard":
     st.subheader("📈 Tren Penyewaan Sepeda")
 
     # Pilih rentang tanggal
+    df.set_index("date", inplace=True)
     min_date = df["date"].min().date()
     max_date = df["date"].max().date()
     start_date, end_date = st.slider("Pilih Rentang Tanggal", min_value=min_date, max_value=max_date, value=(min_date, max_date))
