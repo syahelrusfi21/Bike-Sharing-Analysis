@@ -46,9 +46,6 @@ elif menu == "📊 Dashboard":
     # 📈 **Visualisasi Tren Penyewaan Sepeda**
     st.subheader("📈 Tren Penyewaan Sepeda")
 
-    # Load dataset
-    df = pd.read_csv("bike_(preprocessed)_data.csv")
-
     # 🔍 Debugging: Cek kolom yang tersedia
     st.write("Kolom dalam dataset:", df.columns.tolist())
 
