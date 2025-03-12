@@ -42,31 +42,59 @@ if menu == "🏠 Home":
 # **2️⃣ DASHBOARD PAGE**
 elif menu == "📊 Dashboard":
     st.title("📊 Dashboard Penyewaan Sepeda")
-    
-    # 📈 **Visualisasi Tren Penyewaan (Harian & Bulanan)**
+
+    # 📈 **Visualisasi Tren Penyewaan Sepeda**
     st.subheader("📈 Tren Penyewaan Sepeda")
 
-    # Tambahkan slider untuk memilih rentang tanggal
-    min_date = df["date"].min().date()
-    max_date = df["date"].max().date()
-    start_date, end_date = st.slider("Pilih Rentang Tanggal", min_value=min_date, max_value=max_date, value=(min_date, max_date))
+    # Load dataset
+    df = pd.read_csv("bike_(preprocessed)_data.csv")
 
-    # Filter data berdasarkan rentang tanggal
-    filtered_df = df[(df["date"].dt.date >= start_date) & (df["date"].dt.date <= end_date)]
+    # 🔍 Debugging: Cek kolom yang tersedia
+    st.write("Kolom dalam dataset:", df.columns.tolist())
 
-    # Pilihan tampilan harian atau bulanan
-    option = st.radio("Lihat tren berdasarkan:", ["Harian", "Bulanan"], horizontal=True)
-
-    if option == "Harian":
-        fig = px.line(filtered_df, x="date", y="total_rentals", title="Tren Penyewaan Sepeda (Harian)", labels={"total_rentals": "Jumlah Penyewaan"})
+    # Pastikan kolom sesuai
+    if "date" not in df.columns or "total_rentals" not in df.columns:
+        st.error("Kolom 'date' atau 'total_rentals' tidak ditemukan dalam dataset.")
     else:
+        # Konversi format tanggal
+        df["date"] = pd.to_datetime(df["date"], errors='coerce')
+
+        # Hapus data NaN
+        df = df.dropna(subset=["date", "total_rentals"])
+
+        # Pilih rentang tanggal
+        min_date = df["date"].min().date()
+        max_date = df["date"].max().date()
+        start_date, end_date = st.slider("Pilih Rentang Tanggal", min_value=min_date, max_value=max_date, value=(min_date, max_date))
+
+        # Filter data berdasarkan rentang tanggal
+        filtered_df = df[(df["date"].dt.date >= start_date) & (df["date"].dt.date <= end_date)]
+
+        # Buat agregasi bulanan
         df["month"] = df["date"].dt.to_period("M")
-        monthly_df = df.groupby("month")["total_rentals"].sum().reset_index()
-        fig = px.line(monthly_df, x="month", y="total_rentals", title="Tren Penyewaan Sepeda (Bulanan)", labels={"total_rentals": "Jumlah Penyewaan"})
+        monthly_df = df.groupby("month")["total_rentals"].mean().reset_index()
+        monthly_df["month"] = monthly_df["month"].astype(str)
 
-    # Tampilkan grafik interaktif
-    st.plotly_chart(fig, use_container_width=True)
+        # 🔍 Debugging: Cek jumlah data setelah filter
+        st.write("Jumlah data setelah filter:", filtered_df.shape[0])
 
+        # Plot menggunakan matplotlib
+        fig, ax = plt.subplots(figsize=(12, 6))
+        
+        # Garis tren harian
+        sns.lineplot(data=filtered_df, x="date", y="total_rentals", ax=ax, label="Daily", color="blue")
+
+        # Garis tren bulanan (putus-putus)
+        sns.lineplot(data=monthly_df, x="month", y="total_rentals", ax=ax, label="Monthly", color="orange", linestyle="dashed")
+
+        ax.set_title("Bike Rentals Trend Over Time")
+        ax.set_xlabel("Date")
+        ax.set_ylabel("Number of Rentals")
+        ax.legend()
+
+        # Tampilkan di Streamlit
+        st.pyplot(fig)
+        
 # # **2️⃣ DASHBOARD PAGE**
 # elif menu == "📊 Dashboard":
 #     st.title("📊 Dashboard Penyewaan Sepeda")
