@@ -156,35 +156,6 @@ elif menu == "📊 Dashboard":
     # Tampilkan di Streamlit
     st.plotly_chart(fig)
 
-        
-# # **2️⃣ DASHBOARD PAGE**
-# elif menu == "📊 Dashboard":
-#     st.title("📊 Dashboard Penyewaan Sepeda")
-    
-#     # 📈 **Visualisasi Tren Penyewaan (Harian & Bulanan)**
-#     st.subheader("📈 Tren Penyewaan Sepeda")
-    
-#     # Load gambar
-#     st.image("https://github.com/syahelrusfi21/Bike-Sharing-Analysis/raw/main/dashboard/trend_bike_rentals.png")
-
-#     # 👥 **Perbandingan Pengguna Terdaftar vs Biasa**
-#     st.subheader("👥 Perbandingan Pengguna Terdaftar vs Biasa")
-
-#     # Load gambar
-#     st.image("https://github.com/syahelrusfi21/Bike-Sharing-Analysis/raw/main/dashboard/user_trend.png")
-
-#     # 🌤️ **Pengaruh Lingkungan terhadap Penyewaan**
-#     st.subheader("🌤️ Pengaruh Faktor Lingkungan terhadap Jumlah Penyewa")
-    
-#     # Load gambar
-#     st.image("https://github.com/syahelrusfi21/Bike-Sharing-Analysis/raw/main/dashboard/environmental_condition.png")
-    
-#     # 📅 **Weekday vs Weekend**
-#     st.subheader("📅 Weekday vs Weekend")
-
-#     # Load gambar
-#     st.image("https://github.com/syahelrusfi21/Bike-Sharing-Analysis/raw/main/dashboard/weekday_vs_weekend.png")
-
 # **3️⃣ INSIGHT PAGE**
 elif menu == "📈 Insight":
     st.title("📈 Insight Penyewaan Sepeda")
