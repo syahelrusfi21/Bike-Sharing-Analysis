@@ -144,7 +144,7 @@ elif menu == "📊 Dashboard":
                 z=corr_matrix.values,
                 x=corr_matrix.columns.tolist(),
                 y=corr_matrix.index.tolist(),
-                colorscale="coolwarm",
+                colorscale="Viridis",
                 annotation_text=corr_matrix.round(2).values,
                 showscale=True
             )
