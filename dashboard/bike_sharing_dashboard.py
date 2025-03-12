@@ -113,11 +113,11 @@ elif menu == "📊 Dashboard":
     fig = px.bar(
         day_type_rentals,
         x="day_type",
-        y=["casual_rentals", "registered_rentals"],
-        labels={"value": "Total Rentals", "day_type": "Day Type"},
-        barmode="group",
-        text_auto=True,  # Menampilkan angka di atas bar
-        color_discrete_map={"casual_rentals": "#FFCC00", "registered": "#6699FF"}
+        y="Total Rentals",
+        color="User Type",  # Pastikan ini sesuai dengan color_discrete_map
+        text_auto=True,
+        labels={"Total Rentals": "Total Rentals", "day_type": "Day Type"},
+        color_discrete_map={"casual": "#FFCC00", "registered": "#6699FF"}  # Warna sesuai gambar
     )
 
     fig.update_layout(
