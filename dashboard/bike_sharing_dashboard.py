@@ -49,8 +49,9 @@ elif menu == "📊 Dashboard":
     # Pilih rentang tanggal
     df["date"] = pd.to_datetime(df["date"], errors='coerce')
     df.set_index("date", inplace=True)
-    min_date = df["date"].min().date()
-    max_date = df["date"].max().date()
+    # ✅ Ambil min dan max dari index
+    min_date = df.index.min().date()
+    max_date = df.index.max().date()
     start_date, end_date = st.slider("Pilih Rentang Tanggal", min_value=min_date, max_value=max_date, value=(min_date, max_date))
 
     # Filter data berdasarkan rentang tanggal
