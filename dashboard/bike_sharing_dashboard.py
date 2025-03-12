@@ -47,6 +47,7 @@ elif menu == "📊 Dashboard":
     st.subheader("📈 Tren Penyewaan Sepeda")
 
     # Pilih rentang tanggal
+    df["date"] = pd.to_datetime(df["date"], errors='coerce')
     df.set_index("date", inplace=True)
     min_date = df["date"].min().date()
     max_date = df["date"].max().date()
