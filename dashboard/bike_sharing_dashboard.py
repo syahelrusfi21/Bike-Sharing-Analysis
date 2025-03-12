@@ -46,51 +46,43 @@ elif menu == "📊 Dashboard":
     # 📈 **Visualisasi Tren Penyewaan Sepeda**
     st.subheader("📈 Tren Penyewaan Sepeda")
 
-    # 🔍 Debugging: Cek kolom yang tersedia
-    st.write("Kolom dalam dataset:", df.columns.tolist())
+    # Konversi format tanggal
+    df["date"] = pd.to_datetime(df["date"], errors='coerce')
 
-    # Pastikan kolom sesuai
-    if "date" not in df.columns or "total_rentals" not in df.columns:
-        st.error("Kolom 'date' atau 'total_rentals' tidak ditemukan dalam dataset.")
-    else:
-        # Konversi format tanggal
-        df["date"] = pd.to_datetime(df["date"], errors='coerce')
+    # Hapus data NaN
+    df = df.dropna(subset=["date", "total_rentals"])
 
-        # Hapus data NaN
-        df = df.dropna(subset=["date", "total_rentals"])
+    # Pilih rentang tanggal
+    min_date = df["date"].min().date()
+    max_date = df["date"].max().date()
+    start_date, end_date = st.slider("Pilih Rentang Tanggal", min_value=min_date, max_value=max_date, value=(min_date, max_date))
 
-        # Pilih rentang tanggal
-        min_date = df["date"].min().date()
-        max_date = df["date"].max().date()
-        start_date, end_date = st.slider("Pilih Rentang Tanggal", min_value=min_date, max_value=max_date, value=(min_date, max_date))
+    # Filter data berdasarkan rentang tanggal
+    filtered_df = df[(df["date"].dt.date >= start_date) & (df["date"].dt.date <= end_date)]
 
-        # Filter data berdasarkan rentang tanggal
-        filtered_df = df[(df["date"].dt.date >= start_date) & (df["date"].dt.date <= end_date)]
+    # Buat agregasi bulanan
+    df["month"] = df["date"].dt.to_period("M")
+    monthly_df = df.groupby("month")["total_rentals"].mean().reset_index()
+    monthly_df["month"] = monthly_df["month"].astype(str)
 
-        # Buat agregasi bulanan
-        df["month"] = df["date"].dt.to_period("M")
-        monthly_df = df.groupby("month")["total_rentals"].mean().reset_index()
-        monthly_df["month"] = monthly_df["month"].astype(str)
+    # 🔍 Debugging: Cek jumlah data setelah filter
+    st.write("Jumlah data setelah filter:", filtered_df.shape[0])
 
-        # 🔍 Debugging: Cek jumlah data setelah filter
-        st.write("Jumlah data setelah filter:", filtered_df.shape[0])
-
-        # Plot menggunakan matplotlib
-        fig, ax = plt.subplots(figsize=(12, 6))
+    # Plot menggunakan matplotlib
+    fig, ax = plt.subplots(figsize=(12, 6))
         
-        # Garis tren harian
-        sns.lineplot(data=filtered_df, x="date", y="total_rentals", ax=ax, label="Daily", color="blue")
+    # Garis tren harian
+    sns.lineplot(data=filtered_df, x="date", y="total_rentals", ax=ax, label="Daily", color="blue")
 
-        # Garis tren bulanan (putus-putus)
-        sns.lineplot(data=monthly_df, x="month", y="total_rentals", ax=ax, label="Monthly", color="orange", linestyle="dashed")
+    # Garis tren bulanan (putus-putus)
+    sns.lineplot(data=monthly_df, x="month", y="total_rentals", ax=ax, label="Monthly", color="orange", linestyle="dashed")
+    ax.set_title("Bike Rentals Trend Over Time")
+    ax.set_xlabel("Date")
+    ax.set_ylabel("Number of Rentals")
+    ax.legend()
 
-        ax.set_title("Bike Rentals Trend Over Time")
-        ax.set_xlabel("Date")
-        ax.set_ylabel("Number of Rentals")
-        ax.legend()
-
-        # Tampilkan di Streamlit
-        st.pyplot(fig)
+    # Tampilkan di Streamlit
+    st.pyplot(fig)
         
 # # **2️⃣ DASHBOARD PAGE**
 # elif menu == "📊 Dashboard":
