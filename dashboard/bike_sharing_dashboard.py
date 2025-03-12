@@ -58,11 +58,11 @@ elif menu == "📊 Dashboard":
     option = st.radio("Lihat tren berdasarkan:", ["Harian", "Bulanan"], horizontal=True)
 
     if option == "Harian":
-        fig = px.line(filtered_df, x="datetime", y="count", title="Tren Penyewaan Sepeda (Harian)", labels={"count": "Jumlah Penyewaan"})
+        fig = px.line(filtered_df, x="Date", y="Number of Rentals", title="Tren Penyewaan Sepeda (Harian)", labels={"total_rentals": "Jumlah Penyewaan"})
     else:
-        df["month"] = df["datetime"].dt.to_period("M")
-        monthly_df = df.groupby("month")["count"].sum().reset_index()
-        fig = px.line(monthly_df, x="month", y="count", title="Tren Penyewaan Sepeda (Bulanan)", labels={"count": "Jumlah Penyewaan"})
+        df["month"] = df["date"].dt.to_period("M")
+        monthly_df = df.groupby("month")["total_rentals"].sum().reset_index()
+        fig = px.line(monthly_df, x="month", y="total_rentals", title="Tren Penyewaan Sepeda (Bulanan)", labels={"total_rentals": "Jumlah Penyewaan"})
 
     # Tampilkan grafik interaktif
     st.plotly_chart(fig, use_container_width=True)
