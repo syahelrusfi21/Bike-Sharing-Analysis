@@ -151,8 +151,7 @@ elif menu == "📊 Dashboard":
         showscale=True
     )
 
-    # Tambahkan judul
-    fig.update_layout(title="Matriks Korelasi Variabel Pilihan", width=800, height=600)
+    fig.update_layout(width=800, height=600)
 
     # Tampilkan di Streamlit
     st.plotly_chart(fig)
