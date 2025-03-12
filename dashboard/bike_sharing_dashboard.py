@@ -107,17 +107,17 @@ elif menu == "📊 Dashboard":
     st.subheader("📊 Perbandingan Penyewaan Sepeda: Weekday vs Weekend")
 
     # Grupkan total rental berdasarkan jenis hari (Weekday/Weekend)
-    day_type_rentals = df.groupby("day_type")[["casual", "registered"]].sum().reset_index()
+    day_type_rentals = df.groupby("day_type")[["casual_rentals", "registered_rentals"]].sum().reset_index()
 
     # Buat plot interaktif dengan Plotly
     fig = px.bar(
         day_type_rentals,
         x="day_type",
-        y=["casual", "registered"],
+        y=["casual_rentals", "registered_rentals"],
         labels={"value": "Total Rentals", "day_type": "Day Type"},
         barmode="group",
         text_auto=True,  # Menampilkan angka di atas bar
-        color_discrete_map={"casual": "gold", "registered": "royalblue"}
+        color_discrete_map={"casual_rentals": "gold_rentals", "registered": "royalblue"}
     )
 
     fig.update_layout(
