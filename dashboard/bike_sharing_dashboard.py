@@ -103,6 +103,34 @@ elif menu == "📊 Dashboard":
     # Tampilkan di Streamlit
     st.pyplot(fig)
 
+    # 📈 **Visualisasi Perbandingan Penyewaan Sepeda: Weekday vs Weekend**
+    st.subheader("📊 Perbandingan Penyewaan Sepeda: Weekday vs Weekend")
+
+    # Grupkan total rental berdasarkan jenis hari (Weekday/Weekend)
+    day_type_rentals = df.groupby("day_type")[["casual", "registered"]].sum().reset_index()
+
+    # Buat plot interaktif dengan Plotly
+    fig = px.bar(
+        day_type_rentals,
+        x="day_type",
+        y=["casual", "registered"],
+        labels={"value": "Total Rentals", "day_type": "Day Type"},
+        barmode="group",
+        text_auto=True,  # Menampilkan angka di atas bar
+        color_discrete_map={"casual": "gold", "registered": "royalblue"}
+    )
+
+    fig.update_layout(
+        title="Comparison of Bike Rentals between Weekdays and Weekends",
+        xaxis_title="Day Type",
+        yaxis_title="Total Rentals",
+        yaxis_tickformat=",",  # Format angka agar lebih readable
+        legend_title="User Type"
+    )
+
+    # Tampilkan di Streamlit
+    st.plotly_chart(fig)
+
         
 # # **2️⃣ DASHBOARD PAGE**
 # elif menu == "📊 Dashboard":
