@@ -39,9 +39,6 @@ bike-sharing-analysis/
 │── dashboard/
 │   ├── bike_sharing_dashboard.py  # Main Streamlit app
 │   ├── bike_(preprocessed)_data.csv   # Preprocessed dataset
-│   ├── image1.png   # Visualization image
-|   ├──    .
-|   ├──    .
 │── dataset/
 │   ├── day.csv  # Raw dataset
 │   ├── hour.csv  # Raw dataset
