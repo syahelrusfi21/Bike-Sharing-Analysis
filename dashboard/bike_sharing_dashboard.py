@@ -49,7 +49,6 @@ elif menu == "📊 Dashboard":
     # Pilih rentang tanggal
     df["date"] = pd.to_datetime(df["date"], errors='coerce')
     df.set_index("date", inplace=True)
-    # ✅ Ambil min dan max dari index
     min_date = df.index.min().date()
     max_date = df.index.max().date()
     start_date, end_date = st.slider("Pilih Rentang Tanggal", min_value=min_date, max_value=max_date, value=(min_date, max_date))
@@ -79,6 +78,31 @@ elif menu == "📊 Dashboard":
 
     # Tampilkan di Streamlit
     st.pyplot(fig)
+    
+    # 📈 **Visualisasi Tren Casual vs Registered Users**
+    st.subheader("📊 Tren Penyewaan Casual vs Registered Users")
+
+    # Resampling data
+    daily_casual = filtered_df["casual"].resample("D").mean()
+    daily_registered = filtered_df["registered"].resample("D").mean()
+
+    # Plot menggunakan Matplotlib    
+    fig, ax = plt.subplots(figsize=(12, 6))
+
+    # Garis tren casual (biru)
+    daily_casual.plot(ax=ax, label="Daily Casual User Trend", color="blue")
+
+    # Garis tren registered (oranye, putus-putus)
+    daily_registered.plot(ax=ax, label="Daily Registered User Trend", linestyle="dashed", color="orange")
+
+    ax.set_title("Bike Rentals Trend Over Time")
+    ax.set_xlabel("Date")
+    ax.set_ylabel("Number of Rentals")
+    ax.legend()
+
+    # Tampilkan di Streamlit
+    st.pyplot(fig)
+
         
 # # **2️⃣ DASHBOARD PAGE**
 # elif menu == "📊 Dashboard":
