@@ -3,6 +3,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 import plotly.express as px
+import plotly.figure_factory as ff
 
 # Load Dataset
 def load_data():
@@ -126,6 +127,28 @@ elif menu == "📊 Dashboard":
         yaxis_tickformat=",",  # Format angka agar lebih readable
         legend_title="User Type"
     )
+
+    # Tampilkan di Streamlit
+    st.plotly_chart(fig)
+    
+    # Pilih hanya kolom numerik
+    num_cols = hour_df.select_dtypes(include=["int64", "float64"]).columns
+
+    # Hitung korelasi
+    corr_matrix = hour_df[num_cols].corr()
+
+    # Buat heatmap dengan Plotly
+    fig = ff.create_annotated_heatmap(
+        z=corr_matrix.values,
+        x=corr_matrix.columns.tolist(),
+        y=corr_matrix.index.tolist(),
+        colorscale="coolwarm",
+        annotation_text=corr_matrix.round(2).values,
+        showscale=True
+    )
+
+    # Tambahkan judul
+    fig.update_layout(title="Matriks Korelasi Variabel Numerik", width=800, height=600)
 
     # Tampilkan di Streamlit
     st.plotly_chart(fig)
