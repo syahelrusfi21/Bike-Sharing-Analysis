@@ -83,16 +83,16 @@ elif menu == "📊 Dashboard":
     st.subheader("📊 Tren Penyewaan Casual vs Registered Users")
 
     # Resampling data
-    daily_casual = filtered_df["casual"].resample("D").mean()
-    daily_registered = filtered_df["registered"].resample("D").mean()
+    daily_casual = filtered_df["casual_rentals"].resample("D").mean()
+    daily_registered = filtered_df["registered_rentals"].resample("D").mean()
 
     # Plot menggunakan Matplotlib    
     fig, ax = plt.subplots(figsize=(12, 6))
 
-    # Garis tren casual (biru)
+    # Garis tren casual_rentals (biru)
     daily_casual.plot(ax=ax, label="Daily Casual User Trend", color="blue")
 
-    # Garis tren registered (oranye, putus-putus)
+    # Garis tren registered_rentals (oranye, putus-putus)
     daily_registered.plot(ax=ax, label="Daily Registered User Trend", linestyle="dashed", color="orange")
 
     ax.set_title("Bike Rentals Trend Over Time")
