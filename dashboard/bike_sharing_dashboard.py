@@ -80,8 +80,8 @@ elif menu == "📊 Dashboard":
     # Tampilkan di Streamlit
     st.pyplot(fig)
     
-    # 📈 **Visualisasi Tren Casual vs Registered Users**
-    st.subheader("📊 Tren Penyewaan Casual vs Registered Users")
+    # 👥 **Visualisasi Tren Casual vs Registered Users**
+    st.subheader("👥 Tren Penyewaan Casual vs Registered Users")
 
     # Resampling data
     daily_casual = filtered_df["casual_rentals"].resample("D").mean()
@@ -104,8 +104,8 @@ elif menu == "📊 Dashboard":
     # Tampilkan di Streamlit
     st.pyplot(fig)
 
-    # 📈 **Visualisasi Perbandingan Penyewaan Sepeda: Weekday vs Weekend**
-    st.subheader("📊 Perbandingan Penyewaan Sepeda: Weekday vs Weekend")
+    # 📅 **Visualisasi Perbandingan Penyewaan Sepeda: Weekday vs Weekend**
+    st.subheader("📅 Perbandingan Penyewaan Sepeda: Weekday vs Weekend")
 
     # Grupkan total rental berdasarkan jenis hari (Weekday/Weekend)
     day_type_rentals = df.groupby("day_type")[["casual_rentals", "registered_rentals"]].sum().reset_index()
@@ -132,10 +132,10 @@ elif menu == "📊 Dashboard":
     st.plotly_chart(fig)
     
     # Pilih hanya kolom numerik
-    num_cols = hour_df.select_dtypes(include=["int64", "float64"]).columns
+    num_cols = df.select_dtypes(include=["int64", "float64"]).columns
 
     # Hitung korelasi
-    corr_matrix = hour_df[num_cols].corr()
+    corr_matrix = df[num_cols].corr()
 
     # Buat heatmap dengan Plotly
     fig = ff.create_annotated_heatmap(
