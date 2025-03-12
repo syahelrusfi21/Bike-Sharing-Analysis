@@ -117,7 +117,7 @@ elif menu == "📊 Dashboard":
         labels={"value": "Total Rentals", "day_type": "Day Type"},
         barmode="group",
         text_auto=True,  # Menampilkan angka di atas bar
-        color_discrete_map={"casual_rentals": "gold_rentals", "registered": "royalblue"}
+        color_discrete_map={"casual_rentals": "gold", "registered": "royalblue"}
     )
 
     fig.update_layout(
