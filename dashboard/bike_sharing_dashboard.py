@@ -58,7 +58,7 @@ elif menu == "📊 Dashboard":
     option = st.radio("Lihat tren berdasarkan:", ["Harian", "Bulanan"], horizontal=True)
 
     if option == "Harian":
-        fig = px.line(filtered_df, x="Date", y="Number of Rentals", title="Tren Penyewaan Sepeda (Harian)", labels={"total_rentals": "Jumlah Penyewaan"})
+        fig = px.line(filtered_df, x="date", y="total_rentals", title="Tren Penyewaan Sepeda (Harian)", labels={"total_rentals": "Jumlah Penyewaan"})
     else:
         df["month"] = df["date"].dt.to_period("M")
         monthly_df = df.groupby("month")["total_rentals"].sum().reset_index()
