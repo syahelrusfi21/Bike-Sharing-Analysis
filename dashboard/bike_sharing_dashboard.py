@@ -131,27 +131,33 @@ elif menu == "📊 Dashboard":
     # Tampilkan di Streamlit
     st.plotly_chart(fig)
     
+    if not df.empty:
     # Pilih hanya kolom numerik
     num_cols = df.select_dtypes(include=["int64", "float64"]).columns
 
-    # Hitung korelasi
-    corr_matrix = df[num_cols].corr()
+    if len(num_cols) > 1:  # Pastikan ada lebih dari 1 kolom numerik untuk korelasi
+        # Hitung korelasi
+        corr_matrix = df[num_cols].corr()
 
-    # Buat heatmap dengan Plotly
-    fig = ff.create_annotated_heatmap(
-        z=corr_matrix.values,
-        x=corr_matrix.columns.tolist(),
-        y=corr_matrix.index.tolist(),
-        colorscale="coolwarm",
-        annotation_text=corr_matrix.round(2).values,
-        showscale=True
-    )
+        # Buat heatmap dengan Plotly
+        fig = ff.create_annotated_heatmap(
+            z=corr_matrix.values,
+            x=corr_matrix.columns.tolist(),
+            y=corr_matrix.index.tolist(),
+            colorscale="coolwarm",
+            annotation_text=corr_matrix.round(2).values,
+            showscale=True
+        )
 
-    # Tambahkan judul
-    fig.update_layout(title="Matriks Korelasi Variabel Numerik", width=800, height=600)
+        # Tambahkan judul
+        fig.update_layout(title="Matriks Korelasi Variabel Numerik", width=800, height=600)
 
-    # Tampilkan di Streamlit
-    st.plotly_chart(fig)
+        # Tampilkan di Streamlit
+        st.plotly_chart(fig)
+    else:
+        st.warning("Tidak ada cukup kolom numerik untuk membuat korelasi.")
+else:
+    st.error("DataFrame kosong! Pastikan dataset sudah dimuat.")
 
         
 # # **2️⃣ DASHBOARD PAGE**
