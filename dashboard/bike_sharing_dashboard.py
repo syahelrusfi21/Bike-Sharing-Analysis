@@ -117,11 +117,10 @@ elif menu == "📊 Dashboard":
         labels={"value": "Total Rentals", "day_type": "Day Type"},
         barmode="group",
         text_auto=True,  # Menampilkan angka di atas bar
-        color_discrete_map={"casual_rentals": "gold", "registered": "royalblue"}
+        color_discrete_map={"casual_rentals": "#FFCC00", "registered": "#6699FF"}
     )
 
     fig.update_layout(
-        title="Comparison of Bike Rentals between Weekdays and Weekends",
         xaxis_title="Day Type",
         yaxis_title="Total Rentals",
         yaxis_tickformat=",",  # Format angka agar lebih readable
